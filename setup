@@ -17,3 +17,5 @@ cp spiped.service /lib/systemd/system/ || exit
 systemctl daemon-reload
 systemctl enable spiped.service
 systemctl status spiped.service
+
+echo "Remember to copy /etc/ssh/spiped.key to this server!"
