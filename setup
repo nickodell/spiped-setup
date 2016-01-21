@@ -1,0 +1,19 @@
+#!/bin/bash
+
+apt-get update || exit
+apt-get install -y build-essential git libssl-dev automake || exit
+
+pushd ~
+
+git clone https://github.com/Tarsnap/spiped || exit
+cd spiped
+make || exit
+make install || exit
+
+popd
+
+cp spiped.service /lib/systemd/system/ || exit
+
+systemctl daemon-reload
+systemctl enable spiped.service
+systemctl status spiped.service

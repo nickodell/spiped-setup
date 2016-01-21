@@ -1,0 +1,13 @@
+# spiped systemd init unit
+[Unit]
+Description=spiped tunnel (ssh)
+After=network.target
+
+[Service]
+User=root
+ExecStart=/usr/bin/spiped -d -g -F -k '/etc/ssh/spiped.key' -p /dev/null -s '[0.0.0.0]:27015' -t '[127.0.0.1]:22'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=spiped.service
